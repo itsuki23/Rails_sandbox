@@ -1,0 +1,42 @@
+= render 'shared/flash_messages'
+
+.common-jumbo
+  .jumbo
+  .climber= image_tag('/html/tiny-climber.png')
+  .boulder= image_tag('/html/tiny-boulder.png')
+
+.user-show.container
+  .title
+    .telop
+      = image_tag('/html/users-show-title.png')
+
+  .boxes
+    .box
+      .line
+        .top-left
+          - if @user.image.attached?
+            = image_tag @user.image, class: "icon"
+          - else
+            = image_tag ('/seed/user-default.png'),class:'icon'
+        .top-right
+          %p.key ニックネーム
+          %p.value= @user.nickname
+          %p.key メールアドレス
+          %p.value= @user.email
+          - if @user.email != 'guest@example.com'
+            %p.edit= link_to "プロフィール編集", edit_user_registration_path
+
+      .user-events
+        = render "events/events", { events: @events }
+
+      %hr
+      .paginate
+        = paginate @events
+        = page_entries_info @events
+
+.common-footer
+  .car-mountain
+    .car= image_tag('/html/top-logo-car.png')
+    .mountain= image_tag('/html/top-logo-mountain.png')
+  .copyright
+    .text= image_tag('/html/copyright.png')

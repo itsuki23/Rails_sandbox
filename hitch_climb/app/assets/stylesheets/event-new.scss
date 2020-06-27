@@ -1,0 +1,25 @@
+@import 'var-mixin-common'; //_var-mixin-common.scss
+
+//  EventNew
+
+.event-new {
+  margin-top: 100px;
+
+  .title {
+    display: flex;
+    justify-content: center;
+    @include telop-mini;
+  }
+
+  .boxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .box {
+      width: 50%;
+      padding: 10px;
+          @include mq(sm) { width: 100%; }
+    }
+  }
+}

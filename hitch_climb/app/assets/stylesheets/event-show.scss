@@ -1,0 +1,181 @@
+@import 'var-mixin-common'; //_var-mixin-common.scss
+
+//  EventShow
+
+.event-show {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .title {
+    display: flex;
+    justify-content: center;
+    @include telop-mini;
+  }
+
+  .boxes{
+    display: flex;
+    justify-content: center;
+
+    .box {
+      width: 50%;
+      padding: 10px;
+      @include icon (100px);
+          @include mq     { width:  70%; }
+          @include mq(sm) { width: 100%; }
+
+      .head {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .image {
+        position: relative;
+        img {
+          width: 100%;
+          height: 300px;
+          object-fit: cover;
+        }
+      }
+      .icon-box {
+        width: 100%;
+        position: relative;
+
+        .icon {
+          position: absolute;
+          top: -50px;
+          right: 50px;
+        }
+      }
+      .organizer {
+        width: 70%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .description {
+        display: flex;
+        flex-direction: column;
+
+        .date-and-favorite {
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+          padding: 10px;
+
+          .date{}
+          .favorite {}
+        }
+
+        .body {
+          padding: 10px;
+          word-wrap: break-word;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .count-and-entry {
+          display: flex;
+          padding: 10px;
+              @include mq(sm) { display: block; }
+
+          .count {
+            width: 50%;
+          }
+
+          .entry {
+            width: 50%;
+            position: relative;
+                @include mq(sm) { width: 100%; }
+
+            .entry_button, .entry_cancel_button {
+              position: absolute;
+              right: 0;
+              width: 100px;
+              color: white;
+              text-align: center;
+            }
+            .entry_button { background-color: #008080; }
+            .entry_cancel_button { background-color: #FF6666; }
+          }
+
+          .organizer {
+            display: flex;
+            justify-content: space-between;
+            @include mq(sm) { width: 100%;}
+          }
+        }
+      }
+    }
+  }
+  .comments {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 100px;
+        @include mq     { width:  70%; }
+        @include mq(sm) { width: 100%; }
+
+    span {
+      padding: 20px;
+    }
+
+    .form {
+      margin: 20px 0;
+      position: relative;
+      .comment-form {
+        width: 70%;
+      }
+      .comment-submit {
+        position: absolute;
+        top: 0;
+        right: 20px;
+        color: white;
+        text-align: center;
+        background-color: #008080;
+      }
+    }
+
+    .comment {
+      padding: 10px;
+      margin: 0 auto;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+
+      .comment-box {
+        width: 100%;
+
+        .me {
+          display: flex;
+          flex-direction: row-reverse;
+          @include speech-balloon(yellow, null, right);
+
+          .event-user-icon {
+            display: flex;
+            flex-direction: row-reverse;
+          }
+        }
+
+        .you {
+          display: flex;
+          flex-direction: row;
+          @include speech-balloon(yellow, left, null);
+        }
+        .event-user-icon {
+          width: 20%;
+          @include icon(50px);
+
+          .event-user-comment {
+            width: 80%;
+          }
+        }
+
+        .event-user-comment {
+          .tiny {
+            font-size: 5px;
+            font-weight: lighter;
+          }
+        }
+      }
+    }
+  }
+}

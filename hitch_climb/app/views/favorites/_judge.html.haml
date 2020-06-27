@@ -1,0 +1,9 @@
+- if event.favorite_yet?(current_user)
+  = link_to event_favorites_path(event.id), class:'favorite_button', method: :post do
+    %i.far.fa-star
+  = event.favorites.count
+
+- else
+  = link_to event_favorites_path(event.id), class:'favorite_cancel_button', method: :delete do
+    %i.fas.fa-star
+  = event.favorites.count

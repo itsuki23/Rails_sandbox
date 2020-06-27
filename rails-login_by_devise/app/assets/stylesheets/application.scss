@@ -1,0 +1,21 @@
+@import "bootstrap";
+
+// ログイン画面
+
+.container-login {
+  @extend .container-fluid;
+  max-width: 576px;
+  padding: 2rem;
+}
+
+// 「ログインしました」などのフラッシュ用スタイル(devise用)
+//  _flash_messages.html.erb 内の　alert-<%= name %>　に入る
+//  bootstrapの色をあてがっている
+
+.alert-notice {
+  @extend .alert-info;
+}
+
+.alert-alert {
+  @extend .alert-danger;
+}

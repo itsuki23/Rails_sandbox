@@ -1,0 +1,20 @@
+%header.sticky-top
+  .logo-box
+    = link_to image_tag('/html/top-logo-hand.png',class:'logo', id:"logo-responsive"), root_path
+    = image_tag('/html/top-nav-text1.png', class:'logo-text')
+  %nav
+    %ul#menu
+      - if user_signed_in?
+        %li= link_to image_tag('/html/top-nav-text2.png'), events_path
+        %li= link_to image_tag('/html/top-nav-text6.png'), user_path(current_user.id)
+        %li= link_to image_tag('/html/top-nav-text4.png', class:'out'), destroy_user_session_path, method: :delete
+
+      - else
+        %li= link_to image_tag('/html/top-nav-text3.png'),new_user_session_path
+        %li= link_to image_tag('/html/top-nav-text5.png'),new_user_registration_path
+        %li= link_to image_tag('/html/top-nav-text8.png', class:'guest'), users_guest_sign_in_path, method: :post
+
+  %a.hamburger#hamburger
+    %span
+    %span
+    %span

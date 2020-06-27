@@ -1,0 +1,197 @@
+
+// ------------------------------------------------------------
+//  var
+// ------------------------------------------------------------
+
+$breakpoints: (
+        'sm': 'screen and (max-width: 500px)',
+        'md': 'screen and (max-width: 768px)',
+        'lg': 'screen and (max-width: 1000px)',
+        'xl': 'screen and (max-width: 1200px)',
+) !default;
+// https://www.tam-tam.co.jp/tipsnote/html_css/post10708.html
+
+
+// ------------------------------------------------------------
+//  mixin
+// ------------------------------------------------------------
+
+@mixin mq($breakpoint: md) {
+  @media #{ map-get($breakpoints, $breakpoint) } { @content; }
+}
+
+
+
+//  layout
+// ------------------------------------------------------------
+@mixin flex ($x: null, $y: null, $dir: null, $wrap: null) {
+  display: flex;
+  @if $x      != null { justify-content: $x;}
+  @if $y      != null { align-items: $y; }
+  @if $dir    != null { flex-direction: $dir; }
+  @if $wrap   != null { flex-wrap: $wrap; }
+}
+@mixin absolute ($top: null, $right: null, $bottom: null, $left: null) {
+  position: absolute;
+  @if $top    != null { top: $top; }
+  @if $right  != null { right: $right; }
+  @if $bottom != null { bottom: $bottom; }
+  @if $left   != null { left: $left; }
+}  //Like... @include absolute($top:0, $bottom:0);
+
+
+
+//  top & footer
+// ------------------------------------------------------------
+@mixin jumbo($image1, $image2) {
+  .jumbo { width: 100%; height: 400px; margin: 0;
+    background-image: url($image1); background-size: cover;
+    border-top: 10px solid black; border-bottom: 10px solid black;
+
+    @include mq { height: 300px; }
+    @include mq(sm) { background-image: url($image2); }
+  }
+}
+
+@mixin tiny-climber() {
+  .climber { img { height: 350px; object-fit: cover;
+    position: absolute; top: 450px; left: 15px;
+
+    @include mq { top: 350px; }
+  } }
+  .boulder { img { height: 70px;
+    position: absolute; top: 1000px; right: 0;
+
+    @include mq { top: 900px; }
+  } }
+}
+
+@mixin footer() {
+  .car-mountain     { width: 100%; height: 200px; border-bottom: 10px solid black;
+    display: flex; flex-direction: row; justify-content: space-between;
+    .car, .mountain { height: 200px;
+      img           { height: 200px } } }
+}
+
+@mixin copyright() {
+  .copyright { width: 100%; height: 50px;
+    display: flex; align-items: center; justify-content: center;
+    .text    { display: flex; align-items: center; justify-content: center;
+      img    { height: 30px; } } }
+
+  @include mq(sm) { border-top: 10px solid black; }
+}
+
+
+
+//  body
+// ------------------------------------------------------------
+@mixin telop() {
+  .telop { height: 100px; background-color: yellow;
+           display: flex; align-items: center;
+           position: relative; margin-bottom: 50px;
+
+           @include mq { justify-content: center; }
+           img { margin-left: 50px;
+                 @include mq { margin: 0; } } }
+}
+
+@mixin telop-mini() {
+  .telop { width: 50%; height: 100px; margin-bottom: 50px;
+           background-color: yellow; display: flex;
+           align-items: center; justify-content: center;
+
+           @include mq     { width: 70%; }
+           @include mq(sm) { width: 100%; }
+
+           img { @include mq(sm) { width: 90%; } } }
+}
+
+@mixin arrow() {
+  .allow img { height: 100px; margin-right: 100px;
+    @include mq     { margin-right: 10px; }
+    @include mq(sm) {       height: 20px; }
+
+    &:hover  { margin-right: 0; transition: .3s;}
+      @include mq { margin-right: -30px; } }
+}
+
+@mixin icon($length) {
+  .icon { width: $length; height: $length; padding:1px;
+    border:solid 1px #ccc; border-radius: 50%;
+    object-fit: cover; }
+}
+
+@mixin key-value() {
+  .top-right {
+    .key { width: 100%; border-bottom: 1px solid gray; }
+    .value { width: 100%; height: 20px}
+  }
+}
+
+@mixin speech-balloon($color, $left: null, $right: null) {
+  .speech-balloon {
+    p{ position: relative; background: yellow;
+      padding: 1em; border-radius: 10px;
+
+      &:after{ height: 0; margin: auto; content: "";
+        position: absolute; top: 0; bottom: 0;
+        @if $left    == left  {  left: -20px; }
+        @if $right   == right { right: -20px; }
+        border-style: solid; border-width: 20px 20px 0 20px;
+        border-color: $color transparent transparent transparent;
+      } } }
+}
+// $side = left or right
+//require html => .speech-balloon / %p / = ***
+
+
+
+//  calender
+// ------------------------------------------------------------
+@mixin calender() {
+  .calender-head { font-size: x-small; }
+  .calender_icon { height: 50px; width: 50px; }
+  .simple-calendar   { width: 80%; margin: auto;
+     @include mq(sm) { width: 100%; }
+    .day { @include mq(sm) { height: 50px; } }
+    .wday-0 {}  .wday-1 {}  .wday-2 {}  .wday-3 {}
+    .wday-4 {}  .wday-5 {}  .wday-6 {}
+    .today {}  .past {}  .future {}
+    .start-date {}
+    .prev-month {}  .next-month { }  .current-month {}
+    .has-events {}
+  }
+  .new-post{}
+}
+
+
+
+// ------------------------------------------------------------
+//  common
+// ------------------------------------------------------------
+//.container {　width: 1140px; } bootstrap定義
+.clearfix:after { content: ""; clear: both; display: block; }
+
+
+
+
+// ------------------------------------------------------------
+//  animation for js , for jquery
+// ------------------------------------------------------------
+
+// for js
+//.sa { opacity: 0; transition: all .5s ease; }
+//.sa.show { opacity: 1; transform: none; }
+//
+//.sa--lr        { transform: translate(-100px, 0); }
+//.sa--rl        { transform: translate( 100px, 0); }
+//.sa--up        { transform: translate(0,  100px); }
+//.sa--down      { transform: translate(0, -100px); }
+//.sa--scaleUp   { transform: scale( .5); }
+//.sa--scaleDown { transform: scale(1.5); }
+//.sa--rotateL   { transform: rotate( 180deg); }
+//.sa--rotateR   { transform: rotate(-180deg); }
+
+// for jquery
+.fadein { opacity: 0; transform: translateY(50px); transition: all 2s; }

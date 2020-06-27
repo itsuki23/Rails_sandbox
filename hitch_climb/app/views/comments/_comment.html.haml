@@ -1,0 +1,30 @@
+- comments.order(created_at: :desc).each do |comment|
+  .comment-box
+    -if comment.user == current_user
+      .me
+        .event-user-icon
+          = image_tag(comment.comment_user_image(comment.user), class:'icon')
+
+        .event-user-comment
+          .speech-balloon
+            %span.tiny= comment.user.nickname
+            %p= comment.body
+          -#%small.form-text.text-muted= comment.user.nickname
+
+    - else
+      .you
+        .event-user-icon
+          %p
+            - if comment.user.image.attached?
+              = image_tag comment.user.image, class: 'icon'
+            - else
+              = image_tag("/seed/user-default.png", class: 'icon')
+
+        .event-user-comment
+          .speech-balloon
+            %span.tiny= comment.user.nickname
+            %p= comment.body
+
+.paginate
+  = paginate comments
+  = page_entries_info comments

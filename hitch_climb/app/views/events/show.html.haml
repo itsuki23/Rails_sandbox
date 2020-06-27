@@ -1,0 +1,78 @@
+= render 'shared/flash_messages'
+
+.common-jumbo
+  .jumbo
+  .climber= image_tag('/html/tiny-climber.png')
+  .boulder= image_tag('/html/tiny-boulder.png')
+
+.event-show.container
+  .title
+    .telop
+      = image_tag('/html/events-show-title.png')
+
+  .boxes
+    .box
+      .head
+        %span タイトル：
+        = @event.head
+
+      .image
+        = image_tag(@event.event_image(@event))
+
+      .icon-box
+        = image_tag(@event.event_organizer_image(@user), class:'icon')
+
+      .organizer
+        %span 主催者：
+        = @event.user.nickname
+
+      .description
+        .date-and-favorite
+          .date
+            %span 日時：
+            = @event.start_time&.strftime("%Y年%m月%d日 %H時〜")
+          .favorite
+            - if guest?(@event)
+              = render "favorites/judge", { event: @event }
+
+        .body
+          %span イベント内容：
+          = @event.body
+
+        .count-and-entry
+          .count
+            %span 参加予定：
+            = @event.entries.count
+            %span 人
+
+          - if guest?(@event)
+            .entry
+              - if @event.entry_yet?(current_user)
+                = link_to '参加する', event_entries_path(@event.id), class:'entry_button', method: :post
+              -else
+                = link_to 'キャンセル', event_entries_path(@event.id), class:'entry_cancel_button', method: :delete
+
+          - if organizer?(@event)
+            .organizer
+              .edit
+              %span 編集：
+              = link_to edit_event_path(@event.id) do
+                %i.fa.fa-edit
+            .delete
+              %span 削除：
+              = link_to event_path(@event.id), method: :delete do
+                %i.fa.fa-trash
+
+  .comments
+    %span 雑談コーナー
+    .form
+      = render "comments/form", {event: @event, comment: @comment}
+    .comment
+      = render "comments/comment", {event: @event, comments: @comments}
+
+.common-footer
+  .car-mountain
+    .car= image_tag('/html/top-logo-car.png')
+    .mountain= image_tag('/html/top-logo-mountain.png')
+  .copyright
+    .text= image_tag('/html/copyright.png')

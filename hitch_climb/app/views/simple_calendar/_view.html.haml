@@ -1,0 +1,16 @@
+.for-pc
+  .simple-calendar.fadein
+    = month_calendar events: events do |date, events|
+      = date.day
+      - events.each do |event|
+        %span= event.head.truncate(25)
+
+  .for-mobile
+    .simple-calender.fadein
+      = month_calendar events: events do |date, events|
+        = date.day
+        - events.each do |event|
+          - if event.image.attached?
+            = image_tag(event.image, class: "calender_icon_image")
+          - else
+            = image_tag('/seed/event-default.jpg', class:'calender_icon_image')

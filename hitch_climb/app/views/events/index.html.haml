@@ -1,0 +1,42 @@
+= render 'shared/flash_messages'
+
+.events-jumbo
+  .common-jumbo
+    .jumbo
+    .climber= image_tag('/html/tiny-climber.png')
+    .boulder= image_tag('/html/tiny-boulder.png')
+
+
+
+.events-index.container
+  .telop
+    = image_tag('/html/events-index-title.png')
+    %span= link_to '新規投稿はこちら', new_event_path
+    .allow= link_to image_tag('/html/arrow.png', class: 'mini-arrow'), new_event_path
+
+  .boxes
+    = render "events/events", { events: @events }
+
+  %hr
+  .paginate
+    = paginate @events
+    = page_entries_info @events
+
+  .calender
+    .telop= image_tag('/html/events-calender-title.png')
+    = render "simple_calendar/view", { events: @events }
+
+  .new
+    .telop
+      .text-event-new= image_tag('/html/events-new-title.png')
+      .allow= link_to image_tag('/html/arrow.png', class: 'big-arrow'), new_event_path
+
+
+.common-footer
+  .car-mountain
+    .car= image_tag('/html/top-logo-car.png')
+    .mountain= image_tag('/html/top-logo-mountain.png')
+  .copyright
+    .text= image_tag('/html/copyright.png')
+
+

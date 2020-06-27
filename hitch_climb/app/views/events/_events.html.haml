@@ -1,0 +1,31 @@
+- events.each do |event|
+  .box.fadein
+    .image
+      = link_to image_tag(event.event_image(event), class:'event-image'),event_path(event.id)
+
+    .description
+      .top-text
+        .date
+          = event.start_time&.strftime("%Y年%m月%d日 %H時〜")
+        .favorite
+          - if guest?(event)
+            = render "favorites/judge", { event: event }
+
+      .center-text
+        = event.head.truncate(25)
+
+      .bottom-text
+        .entry
+          - if guest?(event)
+            = render "entries/judge", { event: event }
+
+        .organizer
+          - if organizer?(event)
+            .edit
+              %span 編集：
+              = link_to edit_event_path(event.id) do
+                %i.fa.fa-edit
+            .delete
+              %span 削除：
+              = link_to event_path(event.id), method: :delete do
+                %i.fa.fa-trash

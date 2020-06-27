@@ -1,0 +1,164 @@
+@import 'var-mixin-common'; //_var-mixin-common.scss
+
+// UserShow
+
+.user-show {
+  margin-top: 100px;
+
+  .title {
+    display: flex;
+    justify-content: center;
+    @include telop-mini;
+  }
+
+  .boxes {
+    width: 50%;
+    margin: 0 auto;
+    @include mq(xl) { width: 80%; }
+
+    .box {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .line {
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        @include key-value;
+            @include mq(sm) { flex-direction: column; }
+
+        .top-left {
+          width: 100%;
+          @include icon(200px);
+        }
+
+        .top-right {
+          width: 100%;
+          text-align: right;
+          position: relative;
+
+          .edit {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+                @include mq(sm) { position: static; }
+          }
+        }
+      }
+
+      .user-events {
+        display: flex;
+        flex-flow: row wrap;
+        margin-top: 50px;
+
+        .box {
+          width: 50%;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          padding: 5px;
+              @include mq(sm) { width: 100%; }
+
+          .image {
+            .event-image {
+              width: 100%;
+              height: 200px;
+              object-fit: cover;
+
+              &:hover {
+                opacity: 0.7;
+                transition: .3s;
+              }
+            }
+          }
+
+          .description {
+            width: 100%;
+            padding: 5px;
+
+            .top-text {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+
+              .date {
+                border: 1px solid black;
+                border-radius: 5px;
+                padding: 3px;
+              }
+
+              .favorite {
+                .favorite_button:hover {
+                  color: blue;
+                }
+
+                .favorite_cancel_button {
+                  color: red;
+
+                  &:hover {
+                    opacity: 0.8;
+                  }
+                }
+              }
+            }
+            .center-text {
+              text-align: left;
+              word-wrap: break-word;
+              //ボックス内で収まるよう改行
+            }
+
+            .bottom-text {
+              .entry {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                .count {
+                  width: 50%;
+                }
+
+                .button {
+                  width: 50%;
+                  position: relative;
+
+                  .entry-no, .entry-yes {
+                    position: absolute;
+                    right: 0;
+                    width: 100px;
+                    color: white;
+                    text-align: center;
+                  }
+
+                  .entry-no {
+                    background-color: #008080;
+                  }
+
+                  .entry-yes {
+                    background-color: #FF6666;
+                  }
+                }
+              }
+
+              .organizer {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                text-align: center;
+
+                .edit {
+                  width: 50%;
+                }
+
+                .delete {
+                  width: 50%;
+                }
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+}

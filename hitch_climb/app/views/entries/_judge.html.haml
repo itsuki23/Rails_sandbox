@@ -1,0 +1,15 @@
+- if event.entry_yet?(current_user)
+  .count
+    %span 参加予定:
+    = event.entries.count
+    %span 人
+  .button
+    = link_to '参加する', event_entries_path(event.id), class:'entry-no', method: :post
+
+- else
+  .count
+    %span 参加予定:
+    = event.entries.count
+    %span 人
+  .button
+    = link_to 'キャンセル', event_entries_path(event.id), class:'entry-yes', method: :delete

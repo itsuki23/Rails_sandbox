@@ -1,0 +1,7 @@
+-# = form_with model: ([event, comment]) do |f|
+
+
+= form_for ([event, comment]) do |f|
+  = f.text_area :body, required: true, autofocus: true, |
+    class: 'form-control comment-form', maxlength: '100'
+  = f.submit "コメント", class: 'comment-submit'

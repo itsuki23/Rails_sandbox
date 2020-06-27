@@ -1,0 +1,43 @@
+/*
+ *= require simple_calendar
+ *= require_tree .
+ *= require_self
+ */
+@import 'simple_calendar';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import 'bootstrap';
+
+
+@import 'var-mixin-common'; //_var-mixin-common.scss
+@import 'header'; // _header.scss
+
+//@import 'module/*';
+
+
+.common-jumbo // Jumbotro (except Home)
+ {@include jumbo('/html/events-jumbo.png', '/html/climb-with.png');
+  @include tiny-climber;}
+
+.common-footer // footer
+ { @include footer; @include copyright; }
+
+// ----------------------------------------
+
+// flash  _flash_messages.html.erb alert-<%= name %>で使用
+.alert-notice { @extend .alert-info; }
+.alert-alert  { @extend .alert-danger; }
+
+// login
+.container-login
+ { @extend .container-fluid; max-width: 576px; padding: 2rem;
+   @include mq(sm) { padding: 1rem;} }
+
+@include mq(sm) {
+  .climber, .boulder           { display: none; }
+  .common-footer .car-mountain { display: none; }
+}
+
+//for_safari
+//_::-webkit-full-page-media, _:future, :root
+

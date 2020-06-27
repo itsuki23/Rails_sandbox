@@ -1,0 +1,50 @@
+= render 'shared/flash_messages'
+
+.home-jumbo
+  .jumbo
+
+.home-sec2
+  .top= image_tag('/html/top-text1.png', class:'text1')
+
+  .center
+    .for-pc.fadein
+      .box
+        %p 親指をあげるだけで目的地へ向かうヒッチハイカーのように
+        %p みんなが気軽に参加し、一緒に登れる仲間と繋がる
+        %p カーシェアリングサービスです。
+        .climber= image_tag('/html/top-logo-climber2.png')
+
+    .for-mobile.fadein
+      .box
+        %p.strong ヒッチクライムとは...
+        %p 親指をあげるだけで
+        %p 目的地へ向かうヒッチハイカーのように
+        %p みんなが気軽に参加し
+        %p 一緒に登れる仲間と繋がる
+        %p カーシェアリングサービスです。
+
+  .bottom
+    .left= image_tag('/html/top-logo-car.png')
+    .right= image_tag('/html/top-logo-mountain.png')
+
+.home-sec3
+  .box
+    .left.fadein= image_tag('/html/top-image2.jpg', class:'icon')
+    .right.fadein
+      %p.top 平日はみんなと予定が合わず1人で岩へ…
+      %P.center 重たいマットを持って電車移動している…
+      %p.bottom いつもレンタカーを汚さないように気を遣っている…
+
+.home-telop
+  .for-pc
+    .text= image_tag('/html/top-telop.png')
+  .for-mobile
+    .text= link_to image_tag('/html/top-telop.png'), new_user_registration_path
+  .allow= link_to image_tag('/html/arrow.png'), new_user_registration_path
+
+.guest-guide
+  %p= link_to 'ゲストログインも用意してあります。お気軽にどうぞ！', users_guest_sign_in_path, method: :post
+
+.home-copyright
+  .copyright
+    .text= image_tag('/html/copyright.png')
