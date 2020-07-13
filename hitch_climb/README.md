@@ -81,10 +81,12 @@ gemに隠れて見えない部分が多く、最低限使う機能を理解す�
 
 # これから…
 ## AWSへのデプロイを目指す
-* terraformによるリソースの構築（コードは作成済み）
-* ansibleによるプロビジョニング（まだ…）
-* capistranoによるデプロイ（理解もまだ…）
+* 全体像　https://github.com/itsuki23/infra-as-a-code
+* terraformによるリソースの構築 https://github.com/itsuki23/infra-as-a-code/tree/master/terraform
+* ansibleによるプロビジョニング https://github.com/itsuki23/infra-as-a-code/tree/master/ansible
+* capistranoによるデプロイ　hitch_climb/capfile, hitch_climb/config/deploy.rb, hitch_climb/config/deploy/production.rb staging.rb, hitch_climb/lib/capistrano/tasks
 
+    
 # 自分用memo
 terraform実行時の値を設定↓
 * .env
